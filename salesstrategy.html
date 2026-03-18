@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Strategy & Execution | kyadah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #D63A5A;
+      --red-light: #f0c0ca;
+      --red-pale: #fdf0f3;
+      --charcoal: #2D3047;
+      --charcoal-mid: #454865;
+      --charcoal-light: #6b6e87;
+      --muted: #9a9db5;
+      --bg: #ffffff;
+      --bg-off: #f8f8fb;
+      --bg-section: #f4f4f8;
+      --border: #e4e4ef;
+      --font: 'Nunito', sans-serif;
+      --font-body: 'Nunito Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV (shared) ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.1rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .nav-wordmark { font-family: var(--font); font-size: 1.45rem; font-weight: 700; color: var(--charcoal); letter-spacing: -0.01em; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--charcoal-light); text-decoration: none; font-family: var(--font); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--charcoal); }
+    .nav-links a.active { color: var(--red); }
+    .nav-cta { background: var(--red) !important; color: #fff !important; padding: 0.5rem 1.4rem; border-radius: 50px; font-size: 0.82rem !important; font-weight: 700 !important; transition: background 0.2s !important; }
+    .nav-cta:hover { background: #bf2f4d !important; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 9rem 5vw 5rem;
+      background: var(--bg-off);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; top: -20%; right: -5%;
+      width: 50vw; height: 50vw; max-width: 600px; max-height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #fce8ed 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .breadcrumb {
+      font-family: var(--font); font-size: 0.78rem; font-weight: 600;
+      color: var(--muted); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--red); }
+    .breadcrumb span { color: var(--red); }
+
+    .page-hero-inner { max-width: 760px; position: relative; z-index: 1; }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 16px; height: 2px;
+      background: var(--red); border-radius: 2px;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font);
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .page-hero h1 .accent { color: var(--red); }
+
+    .page-hero-lead {
+      font-size: 1.05rem;
+      color: var(--charcoal-light);
+      max-width: 600px;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary {
+      display: inline-block; background: var(--red); color: #fff;
+      text-decoration: none; font-family: var(--font); font-size: 0.85rem;
+      font-weight: 700; padding: 0.85rem 2rem; border-radius: 50px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #bf2f4d; transform: translateY(-1px); }
+
+    /* ── FOR WHO ── */
+    .for-who {
+      padding: 6rem 5vw;
+    }
+    .for-who-inner { max-width: 1200px; margin: 0 auto; }
+    .for-who h2 { font-family: var(--font); font-size: clamp(1.7rem, 2.5vw, 2.3rem); font-weight: 700; color: var(--charcoal); letter-spacing: -0.02em; margin-bottom: 2.5rem; line-height: 1.3; }
+
+    .profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    .profile-card {
+      background: var(--bg-off);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .profile-card:hover { box-shadow: 0 8px 32px rgba(45,48,71,0.08); transform: translateY(-2px); }
+
+    .profile-tag {
+      display: inline-block;
+      font-family: var(--font); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--red); background: var(--red-pale);
+      padding: 0.3rem 0.85rem; border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .profile-card h3 { font-family: var(--font); font-size: 1.05rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.6rem; }
+    .profile-card p { font-size: 0.88rem; color: var(--charcoal-light); line-height: 1.7; }
+
+    /* ── HOW WE WORK ── */
+    .how {
+      padding: 6rem 5vw;
+      background: var(--bg-off);
+    }
+    .how-inner { max-width: 1200px; margin: 0 auto; }
+    .how h2 { font-family: var(--font); font-size: clamp(1.7rem, 2.5vw, 2.3rem); font-weight: 700; color: var(--charcoal); letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.3; }
+
+    .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+    .how-step {
+      position: relative;
+      padding: 1.75rem 1.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .how-step-num {
+      font-family: var(--font); font-size: 2.5rem; font-weight: 700;
+      color: var(--red-light); line-height: 1; margin-bottom: 1rem;
+    }
+    .how-step h4 { font-family: var(--font); font-size: 0.95rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .how-step p { font-size: 0.83rem; color: var(--charcoal-light); line-height: 1.65; }
+
+    /* ── WHAT'S INCLUDED ── */
+    .included {
+      padding: 6rem 5vw;
+    }
+    .included-inner { max-width: 1200px; margin: 0 auto; }
+
+    .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 5rem; margin-top: 2.5rem; }
+
+    .included-group h3 {
+      font-family: var(--font); font-size: 1rem; font-weight: 700; color: var(--charcoal);
+      padding-bottom: 0.75rem; border-bottom: 2px solid var(--red);
+      margin-bottom: 1.25rem;
+    }
+    .included-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .included-list li {
+      font-size: 0.88rem; color: var(--charcoal-light);
+      display: flex; gap: 0.6rem; align-items: flex-start; line-height: 1.55;
+    }
+    .included-list li::before {
+      content: ''; display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 0.5em;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      margin: 0 5vw 6rem;
+      background: var(--charcoal);
+      border-radius: 24px;
+      padding: 4rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: -30%; right: -5%;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(214,58,90,0.2), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner-text h2 {
+      font-family: var(--font); font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700; color: #fff; margin-bottom: 0.5rem; letter-spacing: -0.02em;
+    }
+    .cta-banner-text p { font-size: 0.92rem; color: rgba(255,255,255,0.55); }
+    .btn-white {
+      display: inline-block; background: #fff; color: var(--charcoal);
+      text-decoration: none; font-family: var(--font); font-size: 0.85rem;
+      font-weight: 700; padding: 0.85rem 2rem; border-radius: 50px;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .btn-white:hover { background: #f0f0f5; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      padding: 2.5rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .footer-wordmark { font-family: var(--font); font-size: 1.2rem; font-weight: 700; color: #fff; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.4); font-family: var(--font); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fu { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .fu-1 { animation-delay: 0.05s; } .fu-2 { animation-delay: 0.2s; } .fu-3 { animation-delay: 0.35s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .profiles { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .included-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .cta-banner { flex-direction: column; padding: 2.5rem 2rem; text-align: center; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+    @media (max-width: 600px) {
+      .how-steps { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="kyadah" style="height: 36px; width: auto;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb fu fu-1">
+      <a href="index.html">Home</a> › <span>Sales Strategy & Execution</span>
+    </div>
+    <div class="section-label fu fu-1">Service deep dive</div>
+    <h1 class="fu fu-2">Build a sales engine<br>that <span class="accent">actually works.</span></h1>
+    <p class="page-hero-lead fu fu-3">
+      Too many sales teams work hard but don't scale. kyadah helps you cut through the noise — building a GTM strategy grounded in what your customers actually need, and the execution discipline to deliver it.
+    </p>
+    <a href="index.html#contact" class="btn-primary fu fu-3">Talk to us about your sales →</a>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="for-who">
+  <div class="for-who-inner">
+    <div class="section-label">Who this is for</div>
+    <h2>We work best with companies<br>at a clear inflection point.</h2>
+    <div class="profiles">
+      <div class="profile-card">
+        <div class="profile-tag">Startup</div>
+        <h3>Ready to build your first real sales motion</h3>
+        <p>You have product-market fit and early customers, but no repeatable sales process. You need a GTM strategy and the execution know-how to run it — without hiring a full sales leadership team before you're ready.</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-tag">Scale-up</div>
+        <h3>Steady revenue, but growth has plateaued</h3>
+        <p>You have a sales team that's working, but not accelerating. The pipeline feels unpredictable. Deals take too long. You need someone who can diagnose what's holding you back and help you fix it.</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-tag">In transition</div>
+        <h3>Between sales leaders</h3>
+        <p>Your VP of Sales just left, or you're promoting from within. You can't afford for momentum to stall while you search for a permanent hire. kyadah can step in, hold the line, and set up the next leader for success.</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-tag">New market</div>
+        <h3>Expanding into unfamiliar territory</h3>
+        <p>You've proven the model in your home market and you're ready to expand. You need a GTM approach tailored to the new context — customer segments, sales cycles, and team structure that actually fit where you're going.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="how">
+  <div class="how-inner">
+    <div class="section-label">How we work</div>
+    <h2>A structured approach from<br>diagnosis to results.</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <h4>Diagnose</h4>
+        <p>We spend time understanding your business, customers, and current sales reality before prescribing anything.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <h4>Design</h4>
+        <p>We build a GTM strategy and sales playbook that fits your stage, team, and market — not a generic template.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <h4>Execute</h4>
+        <p>We work alongside your team to implement — running pipeline reviews, coaching reps, and adapting in real time.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">04</div>
+        <h4>Hand off</h4>
+        <p>We build the capability inside your team so that when we leave, the engine keeps running without us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included">
+  <div class="included-inner">
+    <div class="section-label">What's included</div>
+    <h2 style="font-family:var(--font);font-size:clamp(1.7rem,2.5vw,2.3rem);font-weight:700;color:var(--charcoal);letter-spacing:-0.02em;line-height:1.3;">The building blocks of a<br>high-performance sales organisation.</h2>
+    <div class="included-grid">
+      <div class="included-group">
+        <h3>GTM Strategy</h3>
+        <ul class="included-list">
+          <li>Ideal customer profile definition and segmentation</li>
+          <li>Value proposition and messaging by segment</li>
+          <li>Channel strategy: direct, partner, inbound/outbound mix</li>
+          <li>Competitive positioning and objection handling</li>
+          <li>Pricing and packaging recommendations</li>
+        </ul>
+      </div>
+      <div class="included-group">
+        <h3>Sales Process & Execution</h3>
+        <ul class="included-list">
+          <li>Sales process design: stages, exits, and handoffs</li>
+          <li>Pipeline cadence and forecast methodology</li>
+          <li>CRM setup and usage standards</li>
+          <li>Outbound prospecting playbook</li>
+          <li>Discovery and qualification frameworks</li>
+        </ul>
+      </div>
+      <div class="included-group">
+        <h3>Team & Leadership</h3>
+        <ul class="included-list">
+          <li>Sales team structure and hiring profile definition</li>
+          <li>Onboarding and ramp-to-productivity programme</li>
+          <li>Rep coaching and call review cadence</li>
+          <li>Manager enablement and leadership development</li>
+          <li>Compensation design aligned to company goals</li>
+        </ul>
+      </div>
+      <div class="included-group">
+        <h3>Measurement & Accountability</h3>
+        <ul class="included-list">
+          <li>KPI framework: leading and lagging indicators</li>
+          <li>Weekly/monthly operating rhythm design</li>
+          <li>Dashboard and reporting structure</li>
+          <li>Quarterly business review format</li>
+          <li>Continuous improvement loops built in from day one</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-banner-text">
+    <h2>Ready to build a sales engine that scales?</h2>
+    <p>Let's talk about where you are and where you want to go.</p>
+  </div>
+  <a href="index.html#contact" class="btn-white">Get in touch →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">
+    <img src="logo.png" alt="kyadah" style="height: 30px; width: auto; filter: brightness(0) invert(1);" />
+  </a>
+  <div class="footer-copy">© 2025 kyadah. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
